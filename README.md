@@ -1,7 +1,9 @@
 This is a demo E-commerce App that mainly deals with 2 screens - 
 
 1.Product List Screen.
+
 2.Product Detail Screen.
+
 
 The features that have been implemented are - 
 1. Showing Product List.
