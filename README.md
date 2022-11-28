@@ -1,8 +1,15 @@
-This is a demo E-commerce App that mainly deals with 2 screens - 1.Product List Screen. 2.Product
-Detail Screen.
+This is a demo E-commerce App that mainly deals with 2 screens - 
 
-The features that have been implemented are - 1. Showing Product List. 2. Adding item to wishlist.
-3. Adding item to cart. 4. Showing product description.
+1.Product List Screen.
+
+2.Product Detail Screen.
+
+
+The features that have been implemented are - 
+1. Showing Product List.
+2. Adding item to wishlist.
+3. Adding item to cart.
+4. Showing product description.
 
 The package naming has been done on the basis of "package by feature". Every package has a data,
 business and presentation layer. The app follows a MVVM + clean architecture and obeys the SOLID
