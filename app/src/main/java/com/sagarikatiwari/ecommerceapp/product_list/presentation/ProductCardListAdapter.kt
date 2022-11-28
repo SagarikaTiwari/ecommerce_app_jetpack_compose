@@ -16,7 +16,7 @@ class ProductCardListAdapter(
     val onFavoriteIconClicked: (ProductCardViewState) -> Unit,
     val onBuyCLicked: (ProductCardViewState) -> Unit,
     val onRemoveClicked: (ProductCardViewState) -> Unit,
-) : RecyclerView.Adapter<ProductCardListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ProductListViewHolder>() {
 
 
     private var data: List<ProductCardViewState> = emptyList()
@@ -24,13 +24,17 @@ class ProductCardListAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.product_card, parent, false)
+    ): ProductListViewHolder {
+        return ProductListViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.product_card, parent, false),
+            onItemClicked,
+            onFavoriteIconClicked,
+            onBuyCLicked,
+            onRemoveClicked
         )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) {
         holder.bind(data[position])
     }
 
@@ -43,51 +47,4 @@ class ProductCardListAdapter(
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(productCardViewState: ProductCardViewState) {
-            val bind = ProductCardBinding.bind(itemView)
-            itemView.setOnClickListener {
-                onItemClicked(productCardViewState)
-            }
-            bind.apply {
-                viewProductName.text = productCardViewState.title
-                viewProductDescription.text = productCardViewState.description
-                productPrice.text = productCardViewState.price
-
-                viewWishlistIcon.setOnClickListener {
-                    onFavoriteIconClicked.invoke(
-                        productCardViewState
-                    )
-                }
-                buyButton.setOnClickListener {
-                    onBuyCLicked.invoke(productCardViewState)
-                }
-                removeButton.setOnClickListener {
-                    onRemoveClicked.invoke(productCardViewState)
-                }
-                buyButton.isInvisible = productCardViewState.isProductInCart
-                removeButton.isInvisible = !productCardViewState.isProductInCart
-                viewWishlistIcon.setImageDrawable(
-                    if (productCardViewState.isFavorite) {
-                        ResourcesCompat.getDrawable(
-                            viewWishlistIcon.resources,
-                            R.drawable.ic_baseline_favorite,
-                            null
-                        )
-                    } else {
-                        ResourcesCompat.getDrawable(
-                            viewWishlistIcon.resources,
-                            R.drawable.ic_baseline_favorite_disabled,
-                            null
-                        )
-                    }
-                )
-                Glide.with(productImage)
-                    .asBitmap()
-                    .load(productCardViewState.imageUrl)
-                    .into(BitmapImageViewTarget(productImage))
-            }
-        }
-
-    }
 }

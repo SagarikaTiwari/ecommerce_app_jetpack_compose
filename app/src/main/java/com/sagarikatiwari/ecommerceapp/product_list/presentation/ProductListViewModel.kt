@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sagarikatiwari.ecommerceapp.cart.business.CartRepository
-import com.sagarikatiwari.ecommerceapp.shared.business.ProductRepository
+import com.sagarikatiwari.ecommerceapp.repository.CartRepository
+import com.sagarikatiwari.ecommerceapp.repository.ProductRepository
+import com.sagarikatiwari.ecommerceapp.shared.data.api.Resource
+import com.sagarikatiwari.ecommerceapp.shared.presentation.IndianPriceFormatter
+import com.sagarikatiwari.ecommerceapp.shared.presentation.PriceFormatter
 import com.sagarikatiwari.ecommerceapp.shared.presentation.SingleLiveEvent
 import com.sagarikatiwari.ecommerceapp.wishlist.business.AddOrRemoveFromWishListUseCase
 import com.sagarikatiwari.ecommerceapp.wishlist.business.IsProductInWishListUseCase
@@ -29,39 +32,55 @@ class ProductListViewModel @Inject constructor(
     val viewState: LiveData<ProductListViewState>
         get() = _viewState
 
-    // Can be used for navigation/snackbar/toast/etc...
-    val cartEvents = SingleLiveEvent<AddToCartEvent>()
+     val cartEvents = SingleLiveEvent<AddToCartEvent>()
 
     init {
         viewModelScope.launch(dispatcher) {
-            cartRepository.observeChanges().collect {
+            cartRepository.cartChanges().collect {
                 updateViewStateForCartChanges(it)
             }
         }
     }
 
 
-
     fun loadProductList() {
         viewModelScope.launch(dispatcher) {
-            _viewState.postValue(ProductListViewState.Loading)
             // Data call to fetch products
             val productList = repository.getProductList()
-            val productsInCart = cartRepository.observeChanges().first()
-            _viewState.postValue(
-                ProductListViewState.Content(
-                    productList.map {
-                        ProductCardViewState(
-                            it.productId,
-                            it.title,
-                            it.description,
-                            "INR ${it.price}",
-                            it.imageUrl,
-                            isProductInWishListUseCase.execute(it.productId),
-                            productsInCart.contains(it.productId)
-                        )
-                    }
-                ))
+            val productsInCart = cartRepository.cartChanges().first()
+
+            when (productList) {
+                is Resource.Loading -> {
+                    _viewState.postValue(ProductListViewState.Loading)
+
+                }
+                is Resource.Error -> {
+                    _viewState.postValue(ProductListViewState.Error)
+                }
+
+                is Resource.Success -> {
+                    _viewState.postValue(
+                        productList.data?.let {
+                            ProductListViewState.Content(
+                                it.map {
+                                    ProductCardViewState(
+                                        it.productId,
+                                        it.title,
+                                        it.description,
+                                        IndianPriceFormatter.format(it.price),
+                                        it.imageUrl,
+                                        isProductInWishListUseCase.execute(it.productId),
+                                        productsInCart.contains(it.productId)
+                                    )
+                                }
+
+                            )
+                        }
+                    )
+                }
+            }
+
+
         }
     }
 
@@ -94,7 +113,7 @@ class ProductListViewModel @Inject constructor(
 
     fun onBuyClicked(id: String) {
         viewModelScope.launch(dispatcher) {
-            if (cartRepository.observeChanges().first().contains(id)) {
+            if (cartRepository.cartChanges().first().contains(id)) {
                 cartEvents.postValue(AddToCartEvent(false))
             } else {
                 cartRepository.addToCart(id)
@@ -109,5 +128,4 @@ class ProductListViewModel @Inject constructor(
         }
     }
 
-    data class AddToCartEvent(val isSuccess: Boolean)
 }

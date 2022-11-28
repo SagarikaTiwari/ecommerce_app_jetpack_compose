@@ -44,7 +44,7 @@ class ProductListFragment : Fragment() {
         viewModel.loadProductList()
     }
 
-    private fun updateUiForEvent(it: ProductListViewModel.AddToCartEvent) {
+    private fun updateUiForEvent(it: AddToCartEvent) {
         if(it.isSuccess){
             Snackbar.make(binding.coordinator, "Product added to the cart!", Snackbar.LENGTH_SHORT).show()
         } else {

@@ -1,8 +1,8 @@
-package com.sagarikatiwari.ecommerceapp.wishlist.data.repository
+package com.sagarikatiwari.ecommerceapp.wishlist.data
 
-import com.sagarikatiwari.ecommerceapp.wishlist.business.WishlistRepository
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database.FavoriteProductEntity
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database.WishListDAO
+import com.sagarikatiwari.ecommerceapp.repository.WishlistRepository
+import com.sagarikatiwari.ecommerceapp.wishlist.data.database.FavoriteProductEntity
+import com.sagarikatiwari.ecommerceapp.wishlist.data.database.WishListDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

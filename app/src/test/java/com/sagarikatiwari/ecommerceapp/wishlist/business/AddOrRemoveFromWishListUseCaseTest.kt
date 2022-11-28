@@ -1,5 +1,6 @@
 package com.sagarikatiwari.ecommerceapp.wishlist.business
 
+import com.sagarikatiwari.ecommerceapp.repository.WishlistRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

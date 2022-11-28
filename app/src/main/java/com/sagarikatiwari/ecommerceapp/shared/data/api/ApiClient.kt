@@ -1,4 +1,4 @@
-package com.sagarikatiwari.ecommerceapp.shared.data.repository.api
+package com.sagarikatiwari.ecommerceapp.shared.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

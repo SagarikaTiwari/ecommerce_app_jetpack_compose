@@ -2,17 +2,17 @@ package com.sagarikatiwari.ecommerceapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.sagarikatiwari.ecommerceapp.cart.business.CartRepository
+import com.sagarikatiwari.ecommerceapp.repository.CartRepository
 import com.sagarikatiwari.ecommerceapp.cart.data.CartRepositorySharedPreferences
-import com.sagarikatiwari.ecommerceapp.shared.business.ProductRepository
-import com.sagarikatiwari.ecommerceapp.shared.data.repository.api.ApiClient
-import com.sagarikatiwari.ecommerceapp.shared.data.repository.api.ProductRepositoryAPI
-import com.sagarikatiwari.ecommerceapp.shared.data.repository.api.ProductService
+import com.sagarikatiwari.ecommerceapp.repository.ProductRepository
+import com.sagarikatiwari.ecommerceapp.shared.data.api.ApiClient
+import com.sagarikatiwari.ecommerceapp.shared.data.api.ProductRepositoryAPI
+import com.sagarikatiwari.ecommerceapp.shared.data.api.ProductService
 
-import com.sagarikatiwari.ecommerceapp.wishlist.business.WishlistRepository
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.WishlistDatabaseRepository
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database.AppDatabase
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database.WishListDAO
+import com.sagarikatiwari.ecommerceapp.repository.WishlistRepository
+import com.sagarikatiwari.ecommerceapp.wishlist.data.WishlistDatabaseRepository
+import com.sagarikatiwari.ecommerceapp.wishlist.data.database.AppDatabase
+import com.sagarikatiwari.ecommerceapp.wishlist.data.database.WishListDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

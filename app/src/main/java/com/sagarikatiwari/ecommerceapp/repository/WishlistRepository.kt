@@ -1,4 +1,4 @@
-package com.sagarikatiwari.ecommerceapp.wishlist.business
+package com.sagarikatiwari.ecommerceapp.repository
 
 /*
 * Even tho the name "Repository" may lead you to think that this is part of

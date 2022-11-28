@@ -1,6 +1,8 @@
-package com.sagarikatiwari.ecommerceapp.shared.data.repository.api
+package com.sagarikatiwari.ecommerceapp.shared.data.api.api
 
 import com.sagarikatiwari.ecommerceapp.product_list.data.ProductEntity
+import com.sagarikatiwari.ecommerceapp.shared.data.api.ProductRepositoryAPI
+import com.sagarikatiwari.ecommerceapp.shared.data.api.ProductService
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,7 +34,7 @@ class ProductRepositoryAPITest {
                 ""
             )
         }
-        val products = repository.getProductList()
+        val products = repository.getProductList().data!!
 
         assert(products.size == 3)
         assert(products[1].description == "description 1")

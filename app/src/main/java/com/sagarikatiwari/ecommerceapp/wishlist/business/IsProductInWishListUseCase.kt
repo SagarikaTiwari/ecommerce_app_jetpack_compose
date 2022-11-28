@@ -1,5 +1,6 @@
 package com.sagarikatiwari.ecommerceapp.wishlist.business
 
+import com.sagarikatiwari.ecommerceapp.repository.WishlistRepository
 import javax.inject.Inject
 
 class IsProductInWishListUseCase @Inject constructor(

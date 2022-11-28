@@ -1,9 +1,10 @@
 package com.sagarikatiwari.ecommerceapp.product_list.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.sagarikatiwari.ecommerceapp.cart.business.CartRepository
+import com.sagarikatiwari.ecommerceapp.repository.CartRepository
 import com.sagarikatiwari.ecommerceapp.product_list.business.Product
-import com.sagarikatiwari.ecommerceapp.shared.business.ProductRepository
+import com.sagarikatiwari.ecommerceapp.repository.ProductRepository
+import com.sagarikatiwari.ecommerceapp.shared.data.api.Resource
 import com.sagarikatiwari.ecommerceapp.wishlist.business.AddOrRemoveFromWishListUseCase
 import com.sagarikatiwari.ecommerceapp.wishlist.business.IsProductInWishListUseCase
 import io.mockk.coEvery
@@ -29,12 +30,16 @@ class ProductListViewModelTest {
     private val isProductInWishListUseCase = mockk<IsProductInWishListUseCase>()
     private val cartRepository = mockk<CartRepository>()
     private val addOrRemoveUseCase = mockk<AddOrRemoveFromWishListUseCase>()
-    private val listOfProducts = (0..2).map {
+    private val listOfProduct = (0..2).map {
         Product("title", "description", 6.0, "", "$it")
+
     }
+    private val result: Resource.Success<List<Product>> = mockk()
 
     @Before
     fun setUp() {
+
+
         // for any id return product in wish list false
         coEvery { isProductInWishListUseCase.execute(any()) } returns false
 
@@ -43,10 +48,12 @@ class ProductListViewModelTest {
             isProductInWishListUseCase.execute("1")
         } returns true
 
+
+
         // return the fake product list
         coEvery {
             repository.getProductList()
-        } returns listOfProducts
+        } returns  result
 
         viewModel = ProductListViewModel(
             repository,
@@ -63,7 +70,7 @@ class ProductListViewModelTest {
         viewModel.viewState.observeForever {
             values.add(it)
         }
-        coEvery { cartRepository.observeChanges() } returns flowOf(emptyList())
+        coEvery { cartRepository.cartChanges() } returns flowOf(emptyList())
         viewModel.loadProductList()
         dispatcher.scheduler.advanceUntilIdle() // to make sure that the co routine gets completed before the test goes on
 
@@ -79,7 +86,7 @@ class ProductListViewModelTest {
                                 "$it",
                                 "title",
                                 "description",
-                                "INR 6.0",
+                                "6.0",
                                 "",
                                 it == 1,
                                 false
@@ -94,7 +101,7 @@ class ProductListViewModelTest {
         viewModel.viewState.observeForever {
             values.add(it)
         }
-        coEvery { cartRepository.observeChanges() } returns flowOf(listOf("2"))
+        coEvery { cartRepository.cartChanges() } returns flowOf(listOf("2"))
         viewModel.loadProductList()
         dispatcher.scheduler.advanceUntilIdle()
         // to check that loading state is shown in the beginning

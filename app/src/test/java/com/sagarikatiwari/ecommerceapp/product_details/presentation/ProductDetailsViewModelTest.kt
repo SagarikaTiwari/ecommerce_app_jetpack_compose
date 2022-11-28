@@ -1,7 +1,7 @@
 package com.sagarikatiwari.ecommerceapp.product_details.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.sagarikatiwari.ecommerceapp.shared.business.ProductRepository
+import com.sagarikatiwari.ecommerceapp.repository.ProductRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

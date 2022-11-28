@@ -1,4 +1,4 @@
-package com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database
+package com.sagarikatiwari.ecommerceapp.wishlist.data.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.sagarikatiwari.ecommerceapp.cart.business.CartRepository
+import com.sagarikatiwari.ecommerceapp.repository.CartRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -17,7 +17,7 @@ class CartRepositorySharedPreferences(private val context: Context) : CartReposi
         name = USER_PREFERENCES_NAME
     )
 
-    override suspend fun observeChanges(): Flow<List<String>> {
+    override suspend fun cartChanges(): Flow<List<String>> {
         return context.dataStore.data
             .catch {
                 emptyList<String>()

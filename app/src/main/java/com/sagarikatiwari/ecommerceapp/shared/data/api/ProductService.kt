@@ -1,4 +1,4 @@
-package com.sagarikatiwari.ecommerceapp.shared.data.repository.api
+package com.sagarikatiwari.ecommerceapp.shared.data.api
 
 import com.sagarikatiwari.ecommerceapp.product_details.data.ProductDetailsEntity
 import com.sagarikatiwari.ecommerceapp.product_list.data.ProductEntity

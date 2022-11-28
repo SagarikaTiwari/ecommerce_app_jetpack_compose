@@ -2,4 +2,7 @@
     <string name="app_name">E-commerce App</string>
     <string name="buy_it">Buy it!</string>
     <string name="remove">Remove</string>
+    <string name="rupee">\u20B9</string>
+    <string name="playstation_5">Playstation 5</string>
+    <string name="addtocart">Add To Cart</string>
 </resources>

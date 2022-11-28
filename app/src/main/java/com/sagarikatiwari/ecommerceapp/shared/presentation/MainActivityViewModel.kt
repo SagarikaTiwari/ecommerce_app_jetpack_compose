@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sagarikatiwari.ecommerceapp.cart.business.CartRepository
+import com.sagarikatiwari.ecommerceapp.repository.CartRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class MainActivityViewModel @Inject constructor(private val cartRepository: Cart
 
     fun startObservingCart() {
         viewModelScope.launch {
-            cartRepository.observeChanges().collect {
+            cartRepository.cartChanges().collect {
                 _viewState.postValue(MainActivityViewState(it.size, it.isNotEmpty()))
             }
         }

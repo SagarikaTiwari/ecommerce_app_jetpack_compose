@@ -1,7 +1,8 @@
 package com.sagarikatiwari.ecommerceapp.wishlist.data.repository
 
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database.FavoriteProductEntity
-import com.sagarikatiwari.ecommerceapp.wishlist.data.repository.database.WishListDAO
+import com.sagarikatiwari.ecommerceapp.wishlist.data.WishlistDatabaseRepository
+import com.sagarikatiwari.ecommerceapp.wishlist.data.database.FavoriteProductEntity
+import com.sagarikatiwari.ecommerceapp.wishlist.data.database.WishListDAO
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

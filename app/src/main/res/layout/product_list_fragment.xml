@@ -33,6 +33,7 @@
         <ImageView
             android:id="@+id/errorView"
             android:layout_width="50dp"
+            android:visibility="gone"
             android:layout_height="50dp"
             android:src="@drawable/ic_baseline_error_24"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -28,29 +28,34 @@ class ProductDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadProduct("someProductId")
-        viewModel.viewState.observe(viewLifecycleOwner){
-           updateUi(it)
+        viewModel.viewState.observe(viewLifecycleOwner) {
+            updateUi(it)
         }
     }
 
     private fun updateUi(viewState: ProductDetailsViewState) {
-        when(viewState){
+        when (viewState) {
             is ProductDetailsViewState.Content -> {
-                with(binding){
+                with(binding) {
                     binding.loadingView.isVisible = false
+                    binding.errorView.isVisible = false
+
                     val product = viewState.product
                     viewProductTitle.text = product.title
-                    Glide.with(requireContext()).
-                    load(product.imageUrl)
+                    Glide.with(requireContext()).load(product.imageUrl)
                         .into(viewProductImage)
                     binding.viewPrice.text = product.price
                     binding.viewFullDescription.text = product.fullDescription
                 }
             }
             ProductDetailsViewState.Error -> {
+                binding.errorView.isVisible = true
+
                 binding.loadingView.isVisible = false
             }
             ProductDetailsViewState.Loading -> {
+                binding.errorView.isVisible = false
+
                 binding.loadingView.isVisible = true
             }
         }
