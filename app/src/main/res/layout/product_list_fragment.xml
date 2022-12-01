@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#dadada"
-        tools:context=".shared.presentation.MainActivity">
+        tools:context=".common.presentation.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/view_product_list"

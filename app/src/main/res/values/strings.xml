@@ -5,4 +5,6 @@
     <string name="rupee">\u20B9</string>
     <string name="playstation_5">Playstation 5</string>
     <string name="addtocart">Add To Cart</string>
+    <string name="productId">Add To Cart</string>
+
 </resources>

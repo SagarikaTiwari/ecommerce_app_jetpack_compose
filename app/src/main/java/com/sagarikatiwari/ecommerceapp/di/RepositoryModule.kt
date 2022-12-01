@@ -2,17 +2,15 @@ package com.sagarikatiwari.ecommerceapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.sagarikatiwari.ecommerceapp.repository.CartRepository
-import com.sagarikatiwari.ecommerceapp.cart.data.CartRepositorySharedPreferences
-import com.sagarikatiwari.ecommerceapp.repository.ProductRepository
-import com.sagarikatiwari.ecommerceapp.shared.data.api.ApiClient
-import com.sagarikatiwari.ecommerceapp.shared.data.api.ProductRepositoryAPI
-import com.sagarikatiwari.ecommerceapp.shared.data.api.ProductService
+import com.sagarikatiwari.ecommerceapp.data.repositories.ProductRepository
+import com.sagarikatiwari.ecommerceapp.data.remote.ApiClient
+import com.sagarikatiwari.ecommerceapp.data.repositories.ProductRepositoryImpl
+import com.sagarikatiwari.ecommerceapp.data.remote.ProductService
 
-import com.sagarikatiwari.ecommerceapp.repository.WishlistRepository
-import com.sagarikatiwari.ecommerceapp.wishlist.data.WishlistDatabaseRepository
-import com.sagarikatiwari.ecommerceapp.wishlist.data.database.AppDatabase
-import com.sagarikatiwari.ecommerceapp.wishlist.data.database.WishListDAO
+import com.sagarikatiwari.ecommerceapp.data.repositories.WishlistRepository
+import com.sagarikatiwari.ecommerceapp.data.repositories.WishlistDatabaseRepositoryImpl
+import com.sagarikatiwari.ecommerceapp.data.database.AppDatabase
+import com.sagarikatiwari.ecommerceapp.data.database.dao.WishListDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +19,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import javax.inject.Singleton
 
 @ExperimentalCoroutinesApi
 @Module
@@ -34,21 +31,21 @@ class RepositoryModule {
     @Provides
     fun providedsProductRepositoryAPI(
         service: ProductService
-    ): ProductRepositoryAPI = ProductRepositoryAPI(service)
+    ): ProductRepositoryImpl = ProductRepositoryImpl(service)
 
     @Provides
     fun providesProductRepository(
-        productRepositoryAPI: ProductRepositoryAPI
-    ): ProductRepository = productRepositoryAPI
+        productRepositoryImpl: ProductRepositoryImpl
+    ): ProductRepository = productRepositoryImpl
 
     @Provides
     fun providesWishlistRepository(
-        databaseRepository: WishlistDatabaseRepository
+        databaseRepository: WishlistDatabaseRepositoryImpl
     ): WishlistRepository = databaseRepository
 
     @Provides
-    fun providesWishlistDatabaseRepository(databaseDAO: WishListDAO): WishlistDatabaseRepository {
-        return WishlistDatabaseRepository(databaseDAO)
+    fun providesWishlistDatabaseRepository(databaseDAO: WishListDAO): WishlistDatabaseRepositoryImpl {
+        return WishlistDatabaseRepositoryImpl(databaseDAO)
     }
 
     @Provides
@@ -60,12 +57,6 @@ class RepositoryModule {
             "ecommerce-database"
         ).build()
         return db.wishListDao()
-    }
-
-    @Provides
-    @Singleton
-    fun providesCartRepository(@ApplicationContext context: Context): CartRepository {
-        return CartRepositorySharedPreferences(context)
     }
 
 

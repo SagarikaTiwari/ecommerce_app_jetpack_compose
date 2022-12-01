@@ -6,14 +6,19 @@
 
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.sagarikatiwari.ecommerceapp.product_list.presentation.ProductListFragment"
-        android:label="ProductListFragment" >
+        android:name="com.sagarikatiwari.ecommerceapp.presentation.views.ProductListFragment"
+        android:label="ProductListFragment">
         <action
             android:id="@+id/action_productListFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.sagarikatiwari.ecommerceapp.product_details.presentation.ProductDetailsFragment"
-        android:label="ProductDetailsFragment" />
+        android:name="com.sagarikatiwari.ecommerceapp.presentation.views.ProductDetailsFragment"
+        android:label="ProductDetailsFragment">
+        <argument
+            android:name="@string/productId"
+            android:defaultValue="0"
+            app:argType="string" />
+    </fragment>ßß
 </navigation>
