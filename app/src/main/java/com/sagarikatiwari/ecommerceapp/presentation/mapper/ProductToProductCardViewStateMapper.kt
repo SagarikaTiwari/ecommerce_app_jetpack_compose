@@ -3,12 +3,11 @@ package com.sagarikatiwari.ecommerceapp.presentation.mapper
 import com.sagarikatiwari.ecommerceapp.domain.entities.Product
 import com.sagarikatiwari.ecommerceapp.presentation.viewmodels.ProductCardViewState
 import com.sagarikatiwari.ecommerceapp.domain.usecases.IsProductInWishListUseCase
+import javax.inject.Inject
 
-class ProductToProductCardViewStateMapper(
+class ProductToProductCardViewStateMapper @Inject constructor(
     private val isProductInWishListUseCase: IsProductInWishListUseCase
 ) {
-
-
     suspend fun mapProductToProductCardView(product: Product): ProductCardViewState {
         return ProductCardViewState(
             product.productId,
@@ -17,7 +16,6 @@ class ProductToProductCardViewStateMapper(
             "INR " + product.price.toString(),
             product.imageUrl,
             isProductInWishListUseCase.execute(product.productId),
-
             )
     }
 }

@@ -21,7 +21,7 @@ class ProductListFragment : Fragment() {
     private lateinit var binding: ProductListFragmentBinding
     private val viewModel: ProductListViewModel by viewModels()
     private val adapter =
-        ProductCardListAdapter(::onItemClicked, ::onFavoriteIconClicked, ::onBuyItCLicked, ::onRemoveClicked)
+        ProductCardListAdapter(::onItemClicked, ::onFavoriteIconClicked)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,12 +71,7 @@ class ProductListFragment : Fragment() {
         findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailsFragment().setStringProductId(viewState.id))
      }
 
-    private fun onBuyItCLicked(viewState: ProductCardViewState) {
-        viewModel.onBuyClicked(viewState.id)
-    }
-    private fun onRemoveClicked(viewState: ProductCardViewState){
-        viewModel.removeClicked(viewState.id)
-    }
+
 
     private fun onFavoriteIconClicked(viewState: ProductCardViewState) {
         viewModel.favoriteIconClicked(viewState.id)

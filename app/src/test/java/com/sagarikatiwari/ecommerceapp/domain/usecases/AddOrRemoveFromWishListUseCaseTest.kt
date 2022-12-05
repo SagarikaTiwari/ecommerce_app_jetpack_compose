@@ -1,6 +1,6 @@
 package com.sagarikatiwari.ecommerceapp.wishlist.domain
 
-import com.sagarikatiwari.ecommerceapp.data.repositories.WishlistRepository
+import com.sagarikatiwari.ecommerceapp.domain.repositories.WishlistRepository
 import com.sagarikatiwari.ecommerceapp.domain.usecases.AddOrRemoveFromWishListUseCase
 import com.sagarikatiwari.ecommerceapp.domain.usecases.IsProductInWishListUseCase
 import io.mockk.coEvery

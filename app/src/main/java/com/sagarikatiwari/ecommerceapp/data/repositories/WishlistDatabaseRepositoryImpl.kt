@@ -2,6 +2,7 @@ package com.sagarikatiwari.ecommerceapp.data.repositories
 
 import com.sagarikatiwari.ecommerceapp.data.entities.FavoriteProductEntity
 import com.sagarikatiwari.ecommerceapp.data.database.dao.WishListDAO
+import com.sagarikatiwari.ecommerceapp.domain.repositories.WishlistRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -9,7 +10,6 @@ import javax.inject.Inject
 class WishlistDatabaseRepositoryImpl @Inject constructor(
     private val databaseDAO: WishListDAO
 ) : WishlistRepository {
-
     override suspend fun isFavorite(productId: String): Boolean {
         return withContext(Dispatchers.IO) {
             databaseDAO.isProductFavorite(productId) != null

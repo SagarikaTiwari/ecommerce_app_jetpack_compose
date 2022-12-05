@@ -2,8 +2,9 @@ package com.sagarikatiwari.ecommerceapp.domain.mapper
 
 import com.sagarikatiwari.ecommerceapp.data.entities.ProductDetailsEntity
 import com.sagarikatiwari.ecommerceapp.domain.entities.ProductDetails
+import javax.inject.Inject
 
-class ProductDetailsEntityDataMapper {
+class ProductDetailsEntityDataMapper @Inject constructor(){
 
     fun mapProductDetailsEntityToProductDetails(productDetailsEntity: ProductDetailsEntity): ProductDetails {
 

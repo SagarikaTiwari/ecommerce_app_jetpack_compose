@@ -2,15 +2,17 @@ package com.sagarikatiwari.ecommerceapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.sagarikatiwari.ecommerceapp.data.repositories.ProductRepository
+import com.sagarikatiwari.ecommerceapp.data.database.AppDatabase
+import com.sagarikatiwari.ecommerceapp.domain.repositories.ProductRepository
 import com.sagarikatiwari.ecommerceapp.data.remote.ApiClient
 import com.sagarikatiwari.ecommerceapp.data.repositories.ProductRepositoryImpl
 import com.sagarikatiwari.ecommerceapp.data.remote.ProductService
 
-import com.sagarikatiwari.ecommerceapp.data.repositories.WishlistRepository
+import com.sagarikatiwari.ecommerceapp.domain.repositories.WishlistRepository
 import com.sagarikatiwari.ecommerceapp.data.repositories.WishlistDatabaseRepositoryImpl
-import com.sagarikatiwari.ecommerceapp.data.database.AppDatabase
 import com.sagarikatiwari.ecommerceapp.data.database.dao.WishListDAO
+import com.sagarikatiwari.ecommerceapp.domain.mapper.ProductDetailsEntityDataMapper
+import com.sagarikatiwari.ecommerceapp.domain.mapper.ProductEntityDataMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,8 +32,10 @@ class RepositoryModule {
 
     @Provides
     fun providedsProductRepositoryAPI(
-        service: ProductService
-    ): ProductRepositoryImpl = ProductRepositoryImpl(service)
+        service: ProductService,
+        productEntityToProductDataMapper: ProductEntityDataMapper,
+        productDetailsEntityDataMapper : ProductDetailsEntityDataMapper
+    ): ProductRepositoryImpl = ProductRepositoryImpl(service, productEntityToProductDataMapper,productDetailsEntityDataMapper)
 
     @Provides
     fun providesProductRepository(
@@ -58,7 +62,6 @@ class RepositoryModule {
         ).build()
         return db.wishListDao()
     }
-
 
     @Provides
     fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO

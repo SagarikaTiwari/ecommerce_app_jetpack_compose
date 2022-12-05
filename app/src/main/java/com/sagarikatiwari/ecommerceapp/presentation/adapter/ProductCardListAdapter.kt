@@ -9,11 +9,7 @@ import com.sagarikatiwari.ecommerceapp.presentation.viewmodels.ProductCardViewSt
 class ProductCardListAdapter(
     val onItemClicked: (ProductCardViewState) -> Unit,
     val onFavoriteIconClicked: (ProductCardViewState) -> Unit,
-    val onBuyCLicked: (ProductCardViewState) -> Unit,
-    val onRemoveClicked: (ProductCardViewState) -> Unit,
-) : RecyclerView.Adapter<ProductListViewHolder>() {
-
-
+    ) : RecyclerView.Adapter<ProductListViewHolder>() {
     private var data: List<ProductCardViewState> = emptyList()
 
     override fun onCreateViewHolder(
@@ -24,8 +20,7 @@ class ProductCardListAdapter(
             LayoutInflater.from(parent.context).inflate(R.layout.product_card, parent, false),
             onItemClicked,
             onFavoriteIconClicked,
-            onBuyCLicked,
-            onRemoveClicked
+
         )
     }
 

@@ -17,8 +17,6 @@ internal class ProductEntityDataMapperTest {
 
     @Test
     fun `when mapper function is called then it maps ProductEntity to Product correctly`() {
-
-
         productDetailsEntityDataMapper = ProductEntityDataMapper()
         val productEntity = productDetailsEntityDataMapper.mapProdcutEntityToProduct(productEntity)
 

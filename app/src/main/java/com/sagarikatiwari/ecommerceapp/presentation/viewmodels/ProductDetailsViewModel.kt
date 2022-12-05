@@ -24,10 +24,7 @@ class ProductDetailsViewModel @Inject constructor(
 
     fun loadProduct(productId: String) {
         viewModelScope.launch(dispatcher) {
-
-
             val productDetails = loadProductDetailsUseCase.loadProductDetails(productId)
-
             when (productDetails) {
                 is Resource.Error -> {
                     _viewState.postValue(ProductDetailsViewState.Error)
@@ -41,7 +38,6 @@ class ProductDetailsViewModel @Inject constructor(
                             productDetails.data!!
                         )
                     )
-
                 }
             }
         }

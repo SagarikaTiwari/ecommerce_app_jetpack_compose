@@ -2,8 +2,9 @@ package com.sagarikatiwari.ecommerceapp.domain.mapper
 
 import com.sagarikatiwari.ecommerceapp.data.entities.ProductEntity
 import com.sagarikatiwari.ecommerceapp.domain.entities.Product
+import javax.inject.Inject
 
-class ProductEntityDataMapper {
+class ProductEntityDataMapper @Inject constructor() {
 
     fun mapProdcutEntityToProduct(
         productEntity: ProductEntity
@@ -16,6 +17,5 @@ class ProductEntityDataMapper {
                     productEntity.imageUrl,
                     productEntity.id
                 ))
-
     }
 }

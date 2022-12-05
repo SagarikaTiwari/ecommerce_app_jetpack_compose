@@ -12,7 +12,6 @@ import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class WishlistDatabaseRepositoryImplTest {
-
     private lateinit var repository: WishlistDatabaseRepositoryImpl
     private val dao = mockk<WishListDAO>()
 

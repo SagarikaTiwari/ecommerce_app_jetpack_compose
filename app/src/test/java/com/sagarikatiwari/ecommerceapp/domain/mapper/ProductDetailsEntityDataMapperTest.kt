@@ -15,13 +15,11 @@ internal class ProductDetailsEntityDataMapperTest {
         listOf("pros"),
         listOf("cons")
     )
-
     private lateinit var productDetailsEntityDataMapper: ProductDetailsEntityDataMapper
 
     @Test
     fun `when mapper function is called then it maps productDetailsEntity to productDetails`() {
         productDetailsEntityDataMapper = ProductDetailsEntityDataMapper()
-
         val productDetails = productDetailsEntityDataMapper.mapProductDetailsEntityToProductDetails(
             productDetailsEntity
         )
@@ -35,7 +33,6 @@ internal class ProductDetailsEntityDataMapperTest {
             pros = listOf("pros"),
             cons = listOf("cons")
         )
-
         assert(
             productDetails == productDetailsExcpected
         )

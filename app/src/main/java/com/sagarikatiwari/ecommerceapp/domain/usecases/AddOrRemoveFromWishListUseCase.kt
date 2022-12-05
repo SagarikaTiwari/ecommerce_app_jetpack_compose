@@ -1,6 +1,6 @@
 package com.sagarikatiwari.ecommerceapp.domain.usecases
 
-import com.sagarikatiwari.ecommerceapp.data.repositories.WishlistRepository
+import com.sagarikatiwari.ecommerceapp.domain.repositories.WishlistRepository
 import javax.inject.Inject
 
 class AddOrRemoveFromWishListUseCase @Inject constructor(

@@ -3,6 +3,8 @@ package com.sagarikatiwari.ecommerceapp.common.data.remote.api
 import com.sagarikatiwari.ecommerceapp.data.entities.ProductEntity
 import com.sagarikatiwari.ecommerceapp.data.repositories.ProductRepositoryImpl
 import com.sagarikatiwari.ecommerceapp.data.remote.ProductService
+import com.sagarikatiwari.ecommerceapp.domain.mapper.ProductDetailsEntityDataMapper
+import com.sagarikatiwari.ecommerceapp.domain.mapper.ProductEntityDataMapper
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,10 +17,12 @@ class ProductRepositoryImplTest {
 
     private lateinit var repository: ProductRepositoryImpl
     private val service = mockk<ProductService>()
+    private val productEntityToProductDataMapper = mockk<ProductEntityDataMapper>()
+    private val productDetailsEntityDataMapper = mockk<ProductDetailsEntityDataMapper>()
 
     @Before
     fun setup() {
-        repository = ProductRepositoryImpl(service)
+        repository = ProductRepositoryImpl(service, productEntityToProductDataMapper, productDetailsEntityDataMapper)
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.sagarikatiwari.ecommerceapp.data.repositories
+package com.sagarikatiwari.ecommerceapp.domain.repositories
 
 /*
 * Even tho the name "Repository" may lead you to think that this is part of

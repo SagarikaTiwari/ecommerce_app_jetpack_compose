@@ -14,9 +14,7 @@ class ProductListViewHolder(
     itemView: View,
     val onItemClicked: (ProductCardViewState) -> Unit,
     val onFavoriteIconClicked: (ProductCardViewState) -> Unit,
-    val onBuyCLicked: (ProductCardViewState) -> Unit,
-    val onRemoveClicked: (ProductCardViewState) -> Unit,
-) : RecyclerView.ViewHolder(itemView) {
+    ) : RecyclerView.ViewHolder(itemView) {
     fun bind(productCardViewState: ProductCardViewState) {
         val bind = ProductCardBinding.bind(itemView)
         itemView.setOnClickListener {
@@ -32,12 +30,7 @@ class ProductListViewHolder(
                     productCardViewState
                 )
             }
-            buyButton.setOnClickListener {
-                onBuyCLicked.invoke(productCardViewState)
-            }
-            removeButton.setOnClickListener {
-                onRemoveClicked.invoke(productCardViewState)
-            }
+
             buyButton.isInvisible = false
             removeButton.isInvisible = true
             viewWishlistIcon.setImageDrawable(
@@ -61,6 +54,4 @@ class ProductListViewHolder(
                 .into(BitmapImageViewTarget(productImage))
         }
     }
-
-
 }
