@@ -7,7 +7,7 @@ This is a demo E-commerce App that mainly deals with 2 screens -
 The features that have been implemented are - 
 1. Showing Product List.
 2. Adding item to wishlist.
-3. Showing product deatil screen.
+3. Showing product detail screen.
 
 The package naming has been done on the basis of "package by layers" as per clean architecture.  
 The app follows a MVVM + clean architecture and obeys the SOLID principles. 

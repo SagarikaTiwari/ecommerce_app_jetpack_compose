@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-kapt'
     id 'kotlin-android'
-    id 'dagger.hilt.android.plugin'
+    id "com.google.dagger.hilt.android" version "2.44" apply false
     id 'org.jetbrains.kotlin.android'
 }
 apply plugin: "androidx.navigation.safeargs"
@@ -18,12 +18,12 @@ sourceSets {
     }
 }
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.sagarikatiwari.ecommerceapp"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -46,6 +46,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.sagarikatiwari.ecommerceapp'
 }
 
 dependencies {
@@ -75,8 +76,8 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
 
     // HILT
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
 
     // Room
